@@ -74,6 +74,7 @@ ENTRY
     eid
     doi
     pmid
+    pcmid
     isbn
     issn
     url
@@ -378,7 +379,15 @@ FUNCTION {format.pmid}
 {
   pmid empty$
     { "" }
-    { "PMID: \href{http://pubmed.gov/" pmid * "}{\ttfamily " * pmid escape.url.characters * "}" * }
+    { "PMID: \href{http://pubmed.ncbi.nlm.nih.gov/" pmid * "}{\ttfamily " * pmid escape.url.characters * "}" * }
+  if$
+}
+
+FUNCTION {format.pcmid}
+{
+  pcmid empty$
+    { "" }
+    { "PCMID: \href{https://www.ncbi.nlm.nih.gov/pmc/articles/" pcmid * "}{\ttfamily " * pcmid escape.url.characters * "}" * }
   if$
 }
 
@@ -451,6 +460,7 @@ FUNCTION {format.refs}
   format.issn output
   format.doi output
   format.pmid output
+  format.pcmid output
   format.url output
 }
 
